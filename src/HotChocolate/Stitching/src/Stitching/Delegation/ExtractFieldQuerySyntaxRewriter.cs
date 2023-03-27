@@ -434,7 +434,7 @@ public partial class ExtractFieldQuerySyntaxRewriter
         var currentContext = context;
         var current = node;
 
-        if (_schema.TryGetType<IComplexOutputType>(current.TypeCondition!.Name.Value, out var type))
+        if (current.TypeCondition != null && _schema.TryGetType<IComplexOutputType>(current.TypeCondition!.Name.Value, out var type))
         {
             currentContext = currentContext.Clone();
             currentContext.TypeContext = type;
